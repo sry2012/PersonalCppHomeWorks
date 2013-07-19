@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 21 //定义姓名的支付长度
+#define SIZE2 4 //定义员工号的长度
+#define AGE_low 16//定义员工的最小年龄
+#define AGE_max 60//定义员工的最大年龄
+#define MAX_YG 10 //定义员工的最大人数
+struct Staff {
+    int staff_n;//定义员工号
+	char name[SIZE];
+	char sex[SIZE];
+	int age;
+	float wage;
+	float bc; //
+	float all_income;//员工的总收入
+};//定义员工的类型
+void menu (struct Staff *a, int count);//定义菜单
+void select (char ch, struct Staff *a, int count);//选择功能
+void input (struct Staff *a, int count);
+void output ();
+void order ();
+void select2 ();
+void search ();
+int main ()
+{
+	FILE *fp;
+	if ((fp=fopen("工资信息.txt","wb"))==NULL)
+	{
+		printf ("无法打开\n");
+		exit (1);
+	}
+	int count=0;
+	struct Staff s[MAX_YG];
+	menu(&s[0],count);
+	return 0;
+}
+void menu (struct Staff *a, int count)
+{
+	char ch;
+	printf ("**********************************************\n");
+	printf ("(i)输入员工信息                              *\n");
+	printf ("(o)输出员工信息                              *\n");
+	printf ("(a)排序员工信息                              *\n");
+	printf ("(s)查找信息                                  *\n");
+	printf ("(q)退出程序                                  *\n");
+    printf ("**********************************************\n");
+	printf ("注意！\n1.员工的员工号是4位数字\n2.员工的年龄应在16~60之间\n");
+	scanf  ("%c",&ch);
+	select (ch,a,count);
+}
+void select (char ch, struct Staff *a, int count)
+{
+	switch (ch)
+	{
+	case 'i':
+		input (a,count);break;
+	case 'o':
+		output();break;
+	case 'a':
+		order ();break;
+	case 's':
+		search();break;
+	case 'q':
+		exit (1);
+	}
+}
+void input (struct Staff *a, int count)
+{
+    	printf ("请输入员工号：");
+	scanf ("%d", (*s).staff_n);
+	printf ("请输入员工的名字：");
+	gets ((*s).name);
+	printf ("请输入员工的年龄（16~60）：");
+	scanf ("%d", (*s).age);
